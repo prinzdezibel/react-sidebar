@@ -368,7 +368,11 @@ var Sidebar = function (_Component) {
         rootProps,
         _react2.default.createElement(
           'div',
-          { className: this.props.sidebarClassName, style: sidebarStyle, ref: this.saveSidebarRef },
+          { onScroll: this.props.onSidebarScroll,
+            className: this.props.sidebarClassName,
+            style: sidebarStyle,
+            ref: this.saveSidebarRef
+          },
           this.props.sidebar
         ),
         _react2.default.createElement('div', { className: this.props.overlayClassName,
@@ -379,7 +383,7 @@ var Sidebar = function (_Component) {
         }),
         _react2.default.createElement(
           'div',
-          { className: this.props.contentClassName, style: contentStyle },
+          { onScroll: this.props.onContentScroll, className: this.props.contentClassName, style: contentStyle },
           dragHandle,
           this.props.children
         )
@@ -416,7 +420,7 @@ Sidebar.propTypes = {
   overlayClassName: _propTypes2.default.string,
 
   // sidebar content to render
-  sidebar: _propTypes2.default.node.isRequired,
+  sidebar: _propTypes2.default.node,
 
   // boolean if sidebar should be docked
   docked: _propTypes2.default.bool,
@@ -446,7 +450,13 @@ Sidebar.propTypes = {
   onSetOpen: _propTypes2.default.func,
 
   // Intial sidebar width when page loads
-  defaultSidebarWidth: _propTypes2.default.number
+  defaultSidebarWidth: _propTypes2.default.number,
+
+  // callback called when main content is scrolled
+  onContentScroll: _propTypes2.default.func,
+
+  // callback called when sidebar content is scrolled
+  onSidebarScroll: _propTypes2.default.func
 };
 
 Sidebar.defaultProps = {

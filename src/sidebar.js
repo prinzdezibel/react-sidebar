@@ -319,7 +319,11 @@ class Sidebar extends Component {
 
     return (
       <div {...rootProps}>
-        <div className={this.props.sidebarClassName} style={sidebarStyle} ref={this.saveSidebarRef}>
+        <div onScroll={this.props.onSidebarScroll}
+          className={this.props.sidebarClassName}
+          style={sidebarStyle}
+          ref={this.saveSidebarRef}
+        >
           {this.props.sidebar}
         </div>
         <div className={this.props.overlayClassName}
@@ -363,7 +367,7 @@ Sidebar.propTypes = {
   overlayClassName: PropTypes.string,
 
   // sidebar content to render
-  sidebar: PropTypes.node.isRequired,
+  sidebar: PropTypes.node,
 
   // boolean if sidebar should be docked
   docked: PropTypes.bool,
@@ -396,7 +400,10 @@ Sidebar.propTypes = {
   defaultSidebarWidth: PropTypes.number,
 
   // callback called when main content is scrolled
-  onContentScroll: PropTypes.func
+  onContentScroll: PropTypes.func,
+
+  // callback called when sidebar content is scrolled
+  onSidebarScroll: PropTypes.func
 };
 
 Sidebar.defaultProps = {
